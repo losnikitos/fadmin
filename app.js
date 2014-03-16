@@ -1,13 +1,9 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var player = require('./routes/player');
 var http = require('http');
 var path = require('path');
+var log = require('./libs/log')(module);
+var db = require('./libs/sequelize');
+var player = require('./libs/player');
 
 var app = express();
 
@@ -29,25 +25,14 @@ if ('development' == app.get('env')) {
 }
 
 // routing
-app.get('/players', player.list);
-app.get('/players/:id', player.find);
+app.get('/players', player.query);
 app.post('/players', player.create);
-app.update('/players/:id', player.update);
+
+app.get('/players/:id', player.find);
+app.put('/players/:id', player.update);
 app.delete('/players/:id', player.delete);
 
-global.db
-    .sequelize
-    .sync({ force: true })
-    .complete(function (err) {
-        if (err) {
-            console.log('Sequelize fucked')
-        } else {
-            startServer()
-        }
-    })
 
-function startServer () {
-    http.createServer(app).listen(app.get('port'), function () {
-        console.log('Express server listening on port ' + app.get('port'));
-    });
-}
+http.createServer(app).listen(app.get('port'), function () {
+    log.info('Express server listening on port ' + app.get('port'));
+});

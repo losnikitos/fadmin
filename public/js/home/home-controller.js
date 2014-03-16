@@ -1,20 +1,16 @@
-//var db = require('/')
-//var db = require('../../../models');
+var module = angular.module('fadmin');
 
-angular.module('fadmin', ['ngResource'])
-    .controller('HomeController', ['$scope', '$resource', function ($scope, $resource) {
-        $scope.playerList = playerList.query(function (response) {
-            angular.forEach(response, function (player) {
-                $scope.players.push(player);
-            });
-        });
+module.factory('Player', function ($resource) {
+    return $resource("/players/:id");
+});
 
-        $scope.addPlayer = function () {
-            var Player = $resource("/player/:playerId");
-            var player = new Player({firstName: $scope.firstName, lastName: $scope.lastName});
-            player.$save();
-        }
-    }])
-    .factory('playerList', function ($resource) {
-        return $resource('/players/');
-    });
+module.controller('playerController', function ($scope, Player) {
+
+    $scope.players = Player.query();
+
+    $scope.addPlayer = function () {
+        var dataObject = {firstName: $scope.firstName, lastName: $scope.lastName};
+        var player = new Player(dataObject);
+        player.$save();
+    }
+});
