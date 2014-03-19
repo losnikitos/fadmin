@@ -2,3 +2,5 @@
 node_modules
 .idea
 public/lib
+bower_components/
+

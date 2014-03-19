@@ -4,6 +4,6 @@ angular.module('fadmin', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
         $routeProvider
             .when('/', {
                 templateUrl: 'views/home/home.html',
-                controller: 'playerController'})
+                controller: 'PlayerController'})
             .otherwise({redirectTo: '/'});
     }]);

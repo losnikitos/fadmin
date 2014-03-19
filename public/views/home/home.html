@@ -1,21 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
+
             <h1>Игроки</h1>
 
-            <!--<p class="lead">This is your homepage, ready for editing</p>-->
-
-            <!--<p>-->
-                <!--<span translate="main.like">If you like this Angular-Express-Sequelize generator, please give us a star at </span>&nbsp;<a-->
-                    <!--href="https://github.com/rayokota/generator-angular-express-sequelize" target="_blank"-->
-                    <!--translate="main.github">Github</a>!-->
-            <!--</p>-->
-
-            <ul class="unstyled">
-                <li ng-repeat="player in players">
-                    <input type="text" ng-model="player.firstName" size="30">
-                    <input type="text" ng-model="player.lastName" size="30">
-                </li>
+            <ul class="list-group">
+                <a ng-repeat="player in players" ng-click="openDetails()" class="list-group-item">
+                    {{player.firstName + " " + player.lastName}}
+                </a>
             </ul>
 
             <h1>Новый</h1>

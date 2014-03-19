@@ -9,6 +9,6 @@ var Player = sequelize.define('Player', {
     lastName: Sequelize.STRING
 });
 
-sequelize.sync({force: true});
+//sequelize.sync({force: true});
 
 exports.Player = Player;
