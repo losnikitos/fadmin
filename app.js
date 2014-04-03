@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: '~/uploads' }));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
@@ -27,6 +28,7 @@ if ('development' == app.get('env')) {
 // routing
 app.get('/players', player.query);
 app.post('/players', player.create);
+app.post('/upload', player.uploadPicture);
 
 app.get('/players/:id', player.find);
 app.put('/players/:id', player.update);

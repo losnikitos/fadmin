@@ -1,5 +1,5 @@
 // Declare app level module which depends on filters, and services
-angular.module('fadmin', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date'])
+angular.module('fadmin', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'oi.file'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/', {

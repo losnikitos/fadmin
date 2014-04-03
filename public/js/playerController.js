@@ -15,6 +15,7 @@ module.controller('PlayerController', function ($scope, $modal, Player) {
     }
 
     $scope.openDetails = function () {
+        console.log(this);
         $modal.open({
             templateUrl: 'views/details.html',
             controller: 'PlayerDetails',
@@ -24,5 +25,24 @@ module.controller('PlayerController', function ($scope, $modal, Player) {
 });
 
 module.controller('PlayerDetails', function ($scope, $modalInstance) {
-    console.log($scope.player.firstName)
+    $scope.file = {};
+
+    $scope.options = {
+        //Вызывается для каждого выбранного файла
+        change: function (file) {
+            //В file содержится информация о файле
+            //Загружаем на сервер
+            file.$upload('upload', $scope.file)
+        }
+    }
+
+
+    $scope.close = function (result) {
+        $modalInstance.close()
+    }
+
+    $scope.save = function () {
+        $scope.player.$save();
+        $modalInstance.close();
+    }
 })

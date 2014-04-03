@@ -1,5 +1,6 @@
 var db = require('./sequelize'),
-    log = require('./log')(module);;
+    log = require('./log')(module),
+    fs = require('fs');
 
 exports.query = function (req, res) {
     log.info('Wow, someone asked /players');
@@ -45,8 +46,20 @@ exports.update = function (req, res) {
         player.updateAttributes({firstName: req.param("firstName"), lastName: req.param("lastName")}).success(function () {
             player.save().success(function () {
                 console.log("UPDATED player with id = %d", id);
+                console
             })
 
         })
     })
+}
+
+exports.uploadPicture = function (req, res) {
+    //debugger;
+    fs.readFile(req.files.Files.path, function (err, data) {
+
+        var newPath = '~/img.jpg';
+        fs.writeFile(newPath, data, function (err) {
+            res.redirect("back");
+        });
+    });
 }
