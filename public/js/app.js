@@ -1,9 +1,9 @@
-// Declare app level module which depends on filters, and services
-angular.module('fadmin', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'oi.file'])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'views/home/home.html',
-                controller: 'PlayerController'})
-            .otherwise({redirectTo: '/'});
-    }]);
+var app = angular.module('fadmin', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ui.date', 'oi.file']);
+
+app.config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'views/playerList.html',
+            controller: 'PlayerListController'})
+        .otherwise({redirectTo: '/'});
+}]);

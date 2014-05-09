@@ -1,7 +1,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-
             <h1>Игроки</h1>
 
             <ul class="list-group">
@@ -10,14 +9,7 @@
                 </a>
             </ul>
 
-            <h1>Новый</h1>
-
-            <form ng-submit="addPlayer()">
-                <input type="text" ng-model="firstName" size="30">
-                <input type="text" ng-model="lastName" size="30">
-                <input class="btn-primary" type="submit" value="Добавить">
-            </form>
-
+            <button class="btn-primary" ng-click="newPlayer()">Добавить</button>
         </div>
     </div>
 </div>
