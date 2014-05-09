@@ -11,7 +11,9 @@
     "sqlite3": "~2.1.5",
     "lodash": "~2.4.1",
     "mysql": "~2.1.0",
-    "winston": "~0.7.2"
+    "winston": "~0.7.2",
+    "multiparty": "^3.2.4",
+    "node-uuid": "^1.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

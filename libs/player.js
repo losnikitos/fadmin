@@ -1,6 +1,8 @@
 var db = require('./sequelize'),
     log = require('./log')(module),
-    fs = require('fs');
+    fs = require('fs'),
+    uuid = require('node-uuid');
+    multiparty = require('multiparty');
 
 exports.query = function (req, res) {
     log.info('Wow, someone asked /players');
@@ -54,12 +56,14 @@ exports.update = function (req, res) {
 }
 
 exports.uploadPicture = function (req, res) {
-    //debugger;
-    fs.readFile(req.files.Files.path, function (err, data) {
+    var form = new multiparty.Form();
+    form.on('file',function(name, file){
+        var extension = file.path.match(/\.[0-9a-z]+$/i)[0];
+        var serverName = 'images/' + uuid.v1() + extension;
 
-        var newPath = '~/img.jpg';
-        fs.writeFile(newPath, data, function (err) {
-            res.redirect("back");
-        });
+        fs.rename(file.path, serverName);
+        res.send(serverName);
     });
+
+    form.parse(req);
 }

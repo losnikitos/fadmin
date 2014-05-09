@@ -3,7 +3,6 @@ app.controller('PlayerController', function ($scope, $modalInstance) {
 
     $scope.options = {
         change: function (file) {
-            console.log('!!!', file.$preview);
             file.$upload('upload', $scope.file)
         }
     };

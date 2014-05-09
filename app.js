@@ -2,7 +2,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var log = require('./libs/log')(module);
-var db = require('./libs/sequelize');
 var player = require('./libs/player');
 
 var app = express();
@@ -13,7 +12,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: '~/uploads' }));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
