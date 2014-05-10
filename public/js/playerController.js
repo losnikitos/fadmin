@@ -3,7 +3,12 @@ app.controller('PlayerController', function ($scope, $modalInstance) {
 
     $scope.options = {
         change: function (file) {
-            file.$upload('upload', $scope.file)
+            file.$preview($scope.player).then(function(){
+//                debugger;
+            });
+
+
+//            file.$upload('upload', $scope.player.photo);
         }
     };
 
@@ -12,7 +17,7 @@ app.controller('PlayerController', function ($scope, $modalInstance) {
     };
 
     $scope.save = function () {
-        $scope.player.$save();
+        $scope.$save();
         $modalInstance.close();
     };
 });
